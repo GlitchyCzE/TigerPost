@@ -2,8 +2,8 @@
 $(document).ready(function() {
     $("#login").click(function (event) {
         event.preventDefault();
-        var user = $("#username")
-        var pass = $("#password")
+        var user = $("#username")[0].value;
+        var pass = $("#password")[0].value;
         $.post("action/login", {
             username: user,
             password: pass
