@@ -12,7 +12,7 @@ $(document).ready(function() {
                     alert(msg.msg);
                     window.location = "error.html";
                 } else {
-                    window.location = "dashboard.html";
+                    window.location = "dashboard";
                 }
         });
     });

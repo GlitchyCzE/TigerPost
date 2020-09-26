@@ -1,5 +1,6 @@
 // JavaScript source code
 $(document).ready(function () {
+    var name = document.username
     $.post("action/getPackages", {},
         function (data) {
             let packages = data.data;
@@ -13,7 +14,7 @@ $(document).ready(function () {
             }
             $("#ready #dummyRow").remove();
         });
-    $(".btn btn-primary btn-block btn-sm").click(function (event) {
+    $("#logout").click(function (event) {
         event.preventDefault();
         $.post("action/logout");
         window.location = "index.html";
