@@ -78,7 +78,7 @@ app.post('/action/storePackage', (req, res) => {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
     if (res.session.is_admin) {
-        //TODO: Write here
+
     } else {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
@@ -89,7 +89,7 @@ app.post('/action/checkoutPackage', (req, res) => {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
     if (res.session.is_admin) {
-        //TODO: Write here
+
     } else {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
