@@ -1,6 +1,6 @@
 // JavaScript source code
 $(document).ready(function () {
-    var name = document.username
+    $("#welcome")[0].innerText = "Welcome, " + document.username
     $.post("action/getPackages", {},
         function (data) {
             let packages = data.data;
