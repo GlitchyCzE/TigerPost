@@ -13,13 +13,13 @@ $(document).ready(function () {
         }, function (response) {
                 if (response.error) {
                     alert("Could not create package: " + response.msg);
-                    window.location("error.html");
+                    window.location = "error.html";
                 }
         });
     });
     $(".btn btn-primary btn-block btn-sm").click(function (event) {
-        event.preventDefault()
-        $.post("action/logout")
-        window.location("index.html")
+        event.preventDefault();
+        $.post("action/logout");
+        window.location = "index.html";
     })
 });

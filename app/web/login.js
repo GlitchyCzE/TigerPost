@@ -9,10 +9,10 @@ $(document).ready(function() {
             password: pass
         }, function (msg) {
                 if (msg.error) {
-                    window.location("error.html")
-                    alert(msg.msg)
+                    alert(msg.msg);
+                    window.location = "error.html";
                 } else {
-                    window.location("dashboard.html")
+                    window.location = "dashboard.html";
                 }
         });
     });
