@@ -26,6 +26,7 @@ app.use(session({
 app.use(express.static(__dirname + '/../web'));
 
 app.get("/dashboard", (req, res) => {
+    console.log(req.session)
     if (logic.isEmpty(req.session.uid)) {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
