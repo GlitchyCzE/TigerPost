@@ -7,7 +7,8 @@
     "express-async-handler": "^1.1.4",
     "express-session": "^1.17.1",
     "md5": "^2.3.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
   },
   "main": "index.js",
   "repository": {

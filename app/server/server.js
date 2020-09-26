@@ -5,6 +5,7 @@ const port = 3000;
 const session = require('express-session');
 const ash = require('express-async-handler');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const logic = require('./logic');
 
@@ -29,9 +30,9 @@ app.get("/dashboard", (req, res) => {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
     if (req.session.is_admin) {
-        res.sendFile(__dirname+'/../web/admin.html');
+        res.sendFile(path.resolve(__dirname+'/../web/admin.html'));
     } else {
-        res.sendFile(__dirname+'/../web/dashboard.html');
+        res.sendFile(path.resolve(__dirname+'/../web/dashboard.html'));
     }
 })
 
