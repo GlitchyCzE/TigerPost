@@ -30,7 +30,7 @@ app.get("/dashboard", (req, res) => {
     if (logic.isEmpty(req.session.uid)) {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
-    if (req.session.is_admin) {
+    if (req.session.is_admin === 1) {
         res.sendFile(path.resolve(__dirname+'/../web/admin.html'));
     } else {
         res.sendFile(path.resolve(__dirname+'/../web/dashboard.html'));
