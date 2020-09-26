@@ -27,7 +27,11 @@ module.exports = {
     },
     getPackagesByUid: function(uid) {
         return new Promise(async (resolve) => {
-            resolve(await query(`SELECT * FROM packages WHERE uid = '${uid}';`));
+            if (uid === -1) {
+                resolve(await query(`SELECT * FROM packages;`));
+            } else {
+                resolve(await query(`SELECT * FROM packages WHERE uid = '${uid}';`));
+            }
         });
     },
     createPackage: function(tid, to, address, scanned_in_uid) {
