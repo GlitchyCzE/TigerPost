@@ -14,5 +14,6 @@ $(document).ready(function () {
         });
     $(".btn btn-primary btn-block btn-sm").click(function () {
         $.post("action/logout")
+        window.location("index.html")
     });
 });
