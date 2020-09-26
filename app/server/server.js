@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 
 const logic = require('./logic');
 
-console.log(require('./bcrypt-hash').hash("adminpassword"));
+console.log(require('./bcrypt-hash').hash("userpassword"));
 
 app.set('trust proxy', 1); // trust first proxy
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -23,6 +23,17 @@ app.use(session({
 }));
 
 app.use(express.static(__dirname + '/../web'));
+
+app.get("/dashboard", (req, res) => {
+    if (logic.isEmpty(req.session.uid)) {
+        res.send({error: true, msg: 'No Auth'}).end(403);
+    }
+    if (req.session.is_admin) {
+        res.sendFile(__dirname+'/../web/admin.html');
+    } else {
+        res.sendFile(__dirname+'/../web/dashboard.html');
+    }
+})
 
 app.post('/action/login', ash(async (req, res) => {
     let username = req.body.username;
