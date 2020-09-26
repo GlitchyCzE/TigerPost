@@ -3,6 +3,7 @@ const CONFIG = {
 
     database: {
         host: "localhost",
+        database: "tigerpost",
         username: "tigerpost",
         password: "changeme"
     }
