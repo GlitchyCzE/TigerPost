@@ -57,6 +57,10 @@ app.post('/action/login', ash(async (req, res) => {
 
 app.post('/action/logout', (req, res) => {
     req.session.destroy();
+    res.cookie("connect.sid", "");
+    res.cookie("username", "");
+    res.clearCookie("connect.sid");
+    res.clearCookie("username");
     res.send({error: false, msg: 'OK'}).end(200);
 });
 
