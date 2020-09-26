@@ -11,5 +11,18 @@ module.exports = {
             let row = result[0];
             resolve(bcrypt.compare(password, row["hash"]));
         });
+    },
+    getUserByUsername: function(username) {
+        return new Promise(async (resolve) => {
+            resolve(await query(`SELECT * FROM users WHERE username == '${username}';`));
+        });
+    },
+    getUserById: function(uid) {
+        return new Promise(async (resolve) => {
+            resolve(await query(`SELECT * FROM users WHERE uid == '${uid}';`));
+        });
+    },
+    isEmpty: function(what) {
+        return what === undefined || what === "";
     }
 }
