@@ -11,8 +11,8 @@ $(document).ready(function () {
             address: address
         }, function (response) {
                 if (response.error) {
-                    alert("Could not create package: " + response.msg)
-                    window.location("error.html")
+                    alert("Could not create package: " + response.msg);
+                    window.location("error.html");
                 }
         });
     });
