@@ -2,5 +2,13 @@
   "name": "tigerpost",
   "version": "1.0.0",
   "dependencies": {
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GlitchyCzE/TigerPost"
+  },
+  "author": {
+    "name": "Y3"
   }
 }
