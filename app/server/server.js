@@ -71,17 +71,32 @@ app.post('/action/createPackage', ash(async (req, res) => {
     } else {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
-
 }));
 
 app.post('/action/storePackage', (req, res) => {
+    if (logic.isEmpty(req.session.uid)) {
+        res.send({error: true, msg: 'No Auth'}).end(403);
+    }
+    if (res.session.is_admin) {
 
+    } else {
+        res.send({error: true, msg: 'No Auth'}).end(403);
+    }
 });
 
 app.post('/action/checkoutPackage', (req, res) => {
+    if (logic.isEmpty(req.session.uid)) {
+        res.send({error: true, msg: 'No Auth'}).end(403);
+    }
+    if (res.session.is_admin) {
 
+    } else {
+        res.send({error: true, msg: 'No Auth'}).end(403);
+    }
 });
 
+/*
+Disabled due to time constrains
 app.post('/action/getLocations', (req, res) => {
 
 });
@@ -97,7 +112,7 @@ app.post('/action/updateLocation', (req, res) => {
 app.post('/action/deleteLocation', (req, res) => {
 
 });
-
+*/
 
 //TODO: Change back to no '0.0.0.0'
 app.listen(port, "0.0.0.0", () => {
