@@ -64,7 +64,12 @@ app.post('/action/getPackages', ash(async (req, res) => {
     if (logic.isEmpty(req.session.uid)) {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
-    let result = await logic.getPackagesByUid(req.session.uid);
+    let result = null;
+    if (req.session.is_admin) {
+        result = await logic.getPackagesByUid(-1);
+    } else {
+        result = await logic.getPackagesByUid(req.session.uid);
+    }
     res.send({error: false, data: result}).end(200);
 }));
 
@@ -72,7 +77,7 @@ app.post('/action/createPackage', ash(async (req, res) => {
     if (logic.isEmpty(req.session.uid)) {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
-    if (res.session.is_admin) {
+    if (req.session.is_admin) {
         let tid = req.body.tid;
         let to = req.body.to;
         let address = req.body.address;
@@ -89,7 +94,8 @@ app.post('/action/storePackage', (req, res) => {
     if (logic.isEmpty(req.session.uid)) {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
-    if (res.session.is_admin) {
+    if (req.session.is_admin) {
+        // pid, lid
 
     } else {
         res.send({error: true, msg: 'No Auth'}).end(403);
@@ -101,6 +107,8 @@ app.post('/action/checkoutPackage', (req, res) => {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
     if (res.session.is_admin) {
+        // pid
+
 
     } else {
         res.send({error: true, msg: 'No Auth'}).end(403);
