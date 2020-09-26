@@ -11,6 +11,6 @@ $(document).ready(function () {
     $(".btn btn-primary btn-block btn-sm").click(function (event) {
         event.preventDefault();
         $.post("action/logout");
-        window.location("index.html");
+        window.location = "index.html";
     });
 });
