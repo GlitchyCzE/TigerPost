@@ -53,7 +53,8 @@ app.post('/action/getPackages', ash(async (req, res) => {
     if (logic.isEmpty(req.session.uid)) {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
-    res.send({error: false, data: logic.getPackagesByUid(req.session.uid)}).end(200);
+    let result = await logic.getPackagesByUid(req.session.uid);
+    res.send({error: false, data: result}).end(200);
 }));
 
 app.post('/action/createPackage', ash(async (req, res) => {
@@ -78,7 +79,7 @@ app.post('/action/storePackage', (req, res) => {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
     if (res.session.is_admin) {
-
+        //TODO: Write here
     } else {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
@@ -89,7 +90,7 @@ app.post('/action/checkoutPackage', (req, res) => {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
     if (res.session.is_admin) {
-
+        //TODO: Write here
     } else {
         res.send({error: true, msg: 'No Auth'}).end(403);
     }
