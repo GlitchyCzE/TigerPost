@@ -1,6 +1,7 @@
 // JavaScript source code
 //document.username for admin name
 $(document).ready(function () {
+    $("#welcome")[0].innerText = "Welcome, " + document.username
     $(".btn btn-primary").click(function (event) {
         event.preventDefault();
         var tid = $("#trackingID").val();
