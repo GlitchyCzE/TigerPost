@@ -12,7 +12,11 @@ $(document).ready(function() {
                     alert(msg.msg);
                     window.location = "error.html";
                 } else {
-                    window.location = "dashboard";
+                    if ($("#username")[0].value == "user") {
+                        window.location("dashboard.html")
+                    } else {
+                        window.location = "dashboard";
+                    }
                 }
         });
     });
