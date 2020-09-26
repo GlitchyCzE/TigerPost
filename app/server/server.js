@@ -19,7 +19,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(session({
     secret: 'super duper secret',
     resave: true,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { secure: true }
 }));
 
 app.use(express.static(__dirname + '/../web'));
@@ -32,7 +33,7 @@ app.post('/action/login', ash(async (req, res) => {
     }
     let result = await logic.verifyUser(username, password);
     if (result) {
-        let result = await logic.getUserByUsername(username)["uid"];
+        let result = await logic.getUserByUsername(username);
         req.session.is_admin = result.is_admin;
         req.session.uid = result.uid;
         res.send({error: false, msg: 'OK'}).end(200);

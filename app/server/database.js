@@ -17,6 +17,7 @@ function query(statement) {
     return new Promise(resolve => {
         conn.query(statement, (err, result) => {
            if (err) throw err;
+           console.log("SQL: "+JSON.stringify(result));
            resolve(result);
         });
     });

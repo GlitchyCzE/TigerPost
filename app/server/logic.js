@@ -15,7 +15,9 @@ module.exports = {
     },
     getUserByUsername: function(username) {
         return new Promise(async (resolve) => {
-            resolve(await query(`SELECT * FROM users WHERE username = '${username}';`));
+            let result = await query(`SELECT * FROM users WHERE username = '${username}';`);
+            result = result[0]
+            resolve(result);
         });
     },
     getUserById: function(uid) {
