@@ -105,6 +105,3 @@ dist
 
 # Jetbrains
 /.idea/
-
-# Don't upload dev/production config
-config.js
