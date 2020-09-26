@@ -13,9 +13,9 @@ $(document).ready(function() {
                     window.location = "error.html";
                 } else {
                     if ($("#username")[0].value == "user") {
-                        window.location("dashboard.html")
+                        window.location = "dashboard.html"
                     } else {
-                        window.location = "dashboard";
+                        window.location = "admin.html";
                     }
                 }
         });
