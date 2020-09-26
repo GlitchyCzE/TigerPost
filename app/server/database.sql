@@ -19,6 +19,7 @@ CREATE TABLE `locations` (
 CREATE TABLE `packages` (
 	`pid` INT NOT NULL AUTO_INCREMENT,
 	`tid` VARCHAR(64) NOT NULL,
+	`uid` INT,
 	`to` TEXT NOT NULL,
 	`address` TEXT NOT NULL,
 	`time_scanned_in` TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
