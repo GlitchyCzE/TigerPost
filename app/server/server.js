@@ -36,6 +36,7 @@ app.post('/action/login', ash(async (req, res) => {
         let result = await logic.getUserByUsername(username);
         req.session.is_admin = result.is_admin;
         req.session.uid = result.uid;
+        res.cookie('username', username);
         res.send({error: false, msg: 'OK'}).end(200);
     } else {
         req.session.destroy();
@@ -50,12 +51,26 @@ app.post('/action/logout', (req, res) => {
 
 app.post('/action/getPackages', ash(async (req, res) => {
     if (logic.isEmpty(req.session.uid)) {
-        res.send({error: false, msg: 'OK'}).end(403);
+        res.send({error: true, msg: 'No Auth'}).end(403);
     }
     res.send({error: false, data: logic.getPackagesByUid(req.session.uid)}).end(200);
 }));
 
 app.post('/action/createPackage', ash(async (req, res) => {
+    if (logic.isEmpty(req.session.uid)) {
+        res.send({error: true, msg: 'No Auth'}).end(403);
+    }
+    if (res.session.is_admin) {
+        let tid = req.body.tid;
+        let to = req.body.to;
+        let address = req.body.address;
+        if (logic.isEmpty(tid) || logic.isEmpty(to) || logic.isEmpty(address)) {
+            res.send({error: true, msg: 'Missing parameters'}).end(400);
+        }
+        await logic.createPackage(tid, to, address, req.session.uid);
+    } else {
+        res.send({error: true, msg: 'No Auth'}).end(403);
+    }
 
 }));
 

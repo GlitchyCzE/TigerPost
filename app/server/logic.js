@@ -30,8 +30,18 @@ module.exports = {
             resolve(await query(`SELECT * FROM packages WHERE uid = '${uid}';`));
         });
     },
+    createPackage: function(tid, to, address, scanned_in_uid) {
+        return new Promise( async (resolve) => {
+            let result = await query(`SELECT * FROM users WHERE name LIKE %${to}%`);
+            let uid = -1;
+            if (!this.isEmpty(result)) {
+                uid = result[0].uid;
+            }
+            resolve(await query(`INSERT INTO packages (tid, uid, to, address, time_scanned_in, scanned_in_by) VALUES ('${tid}', '${uid}', '${to}', '${address}', CURRENT_TIME(), '${scanned_in_uid}');`))
+        });
+    },
 
     isEmpty: function(what) {
-        return what === undefined || what === "";
+        return what === undefined || what === "" || what === [];
     }
 }
