@@ -19,8 +19,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(session({
     secret: 'super duper secret',
     resave: true,
-    saveUninitialized: false,
-    cookie: { secure: true }
+    saveUninitialized: false
 }));
 
 app.use(express.static(__dirname + '/../web'));
