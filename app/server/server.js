@@ -20,7 +20,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-app.use(express.static('../web'));
+app.use(express.static(__dirname+'/../web'));
 
 app.post('/action/login', ash(async (req, res) => {
     let username = req.body.username;
