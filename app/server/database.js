@@ -3,6 +3,7 @@ const CONFIG = require('../../config');
 
 const conn = mysql.createConnection({
     host: CONFIG.database.host,
+    database: CONFIG.database.database,
     user: CONFIG.database.username,
     password: CONFIG.database.password
 });
