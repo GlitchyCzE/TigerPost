@@ -1,12 +1,46 @@
 // Root of the server
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const port = 3000;
+const session = require('express-session');
+const ash = require('express-async-handler');
+const bodyParser = require('body-parser');
+
+const logic = require('./logic');
+
+app.set('trust proxy', 1); // trust first proxy
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
+
+app.use(session({
+    secret: 'super duper secret',
+    resave: true,
+    saveUninitialized: false
+}));
 
 app.use(express.static('../web'));
 
-app.post('/action/login', (req, res) => {
+app.post('/action/login', ash(async (req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    if (logic.isEmpty(username) || logic.isEmpty(password)) {
+        res.send("Username/Password invalid.").end(403);
+    }
+    let result = await logic.verifyUser(username, password);
+    if (result) {
+        req.session.uid = await logic.getUserByUsername(username)["uid"];
+        res.send("OK").end(200);
+    } else {
+        req.session.destroy();
+        res.send("Username/Password invalid.").end(403);
+    }
+}));
 
+app.post('/action/logout', (req, res) => {
+    req.session.destroy();
+    res.send("OK").end(200);
 });
 
 app.post('/action/getPackages', (req, res) => {
