@@ -28,6 +28,7 @@ module.exports = {
             resolve(await query(`SELECT * FROM packages WHERE uid = '${uid}';`));
         });
     },
+
     isEmpty: function(what) {
         return what === undefined || what === "";
     }
