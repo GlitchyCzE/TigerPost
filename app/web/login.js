@@ -1,6 +1,7 @@
 // JavaScript source code
 $(document).ready(function() {
-    $(".btn btn-primary btn-block").click(function () {
+    $(".btn btn-primary btn-block").click(function (event) {
+        event.preventDefault();
         var user = $("#username")
         var pass = $("#password")
         $.post("action/login", {

@@ -12,7 +12,8 @@ $(document).ready(function () {
             }
             $("#ready #dummyRow").remove();
         });
-    $(".btn btn-primary btn-block btn-sm").click(function () {
+    $(".btn btn-primary btn-block btn-sm").click(function (event) {
+        event.preventDefault();
         $.post("action/logout")
         window.location("index.html")
     });
