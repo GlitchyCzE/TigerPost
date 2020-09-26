@@ -39,7 +39,8 @@ app.post('/action/login', ash(async (req, res) => {
 }));
 
 app.post('/action/logout', (req, res) => {
-
+    req.session.destroy();
+    res.send("OK").end(200);
 });
 
 app.post('/action/getPackages', (req, res) => {
