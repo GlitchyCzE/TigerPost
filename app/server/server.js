@@ -30,7 +30,9 @@ app.post('/action/login', ash(async (req, res) => {
     }
     let result = await logic.verifyUser(username, password);
     if (result) {
-        req.session.uid = await logic.getUserByUsername(username)["uid"];
+        let result = await logic.getUserByUsername(username)["uid"];
+        req.session.is_admin = result.is_admin;
+        req.session.uid = result.uid;
         res.send({error: false, msg: 'OK'}).end(200);
     } else {
         req.session.destroy();
@@ -50,9 +52,9 @@ app.post('/action/getPackages',  ash(async(req, res) => {
     res.send({error: false, data: logic.getPackagesByUid(req.session.uid)}).end(200);
 }));
 
-app.post('/action/createPackage', (req, res) => {
+app.post('/action/createPackage',  ash(async(req, res) => {
 
-});
+}));
 
 app.post('/action/storePackage', (req, res) => {
 
@@ -78,6 +80,8 @@ app.post('/action/deleteLocation', (req, res) => {
 
 });
 
+
+//TODO: Change back to no '0.0.0.0'
 app.listen(port, "0.0.0.0", () => {
     console.log(`TigerPost listening locally on http://localhost:${port}`);
     console.log(`One must start up the proxy webserver using the config in /webserver`);
